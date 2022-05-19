@@ -1,0 +1,177 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Getting and Cleaning Data Codebook
+
+This is analysis was performed by SL-47 utilising the data sources from
+the project **Human Activity Recognition Using Smartphones Dataset** (1)
+
+## Objective
+
+This project is to create a tidy data set from the sources listed
+meeting the following requirements: 1. Merges the training and the test
+sets to create one data set. 2. Extracts only the measurements on the
+mean and standard deviation for each measurement. 3. Uses descriptive
+activity names to name the activities in the data set 4. Appropriately
+labels the data set with descriptive variable names. 5. From the data
+set in step 4, creates a second, independent tidy data set with the
+average of each variable for each activity and each subject.
+
+The output is saved in analysis.csv
+
+## Data Set information
+
+Detailed information of the methods for performing the measurements can
+be found in at
+<http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones>
+
+For each record in the dataset it is provided: \* Triaxial acceleration
+from the accelerometer (total acceleration) and the estimated body
+acceleration. \* Triaxial Angular velocity from the gyroscope. \* A
+561-feature vector with time and frequency domain variables. \* Its
+activity label. \* An identifier of the subject who carried out the
+experiment.
+
+The structure for the data
+
+```{r eval = FALSE}
+-+- test  
+ |  |- subject_test.tx          Each row identifies the subject who 
+ |  |                           performed the activity (range 1 to 30)
+ |  |- X_test.txt               Test set 
+ |  |- y_test.txt               Test labels
+ |  + Inertial Signals          (not used) 
+ |
+ +- train
+ |  |- subject_train.txt        Each row identifies the subject who
+ |  |                           performed the activity (range 1 to 30)
+ |  |- X_train.txt              Training set
+ |  |- y_train.txt              Training labels
+ |  | + Inertial Signals        (not used)
+ |
+ +- activity_labels.txt         Links the class labels with their
+ |                              activity name.
+ +- features_info.txt           Shows information about the variables
+ |                              used on the feature vector
+ +- features.txt                List of all features.
+ |- analysis.csv                results of the analysis
+ +- tidy
+    |- README.rmd 
+    |- code-book.rmd 
+    |- run_analysis.R           R script to process the data
+```
+
+### Notes
+
+-   Features are normalized and bounded within [-1,1].
+-   Each feature vector is a row on the text file.
+-   txt files are space delimited.
+
+## Processing
+
+The data is processed using the script run_analysis.R creating an output
+file analysis.csv. Each row is a single observation averaging the each
+feature measurement by subject by activity.
+
+| ***feature name type description***
+| subject num the id of the person who performed the activity
+| activity char the activity being performed
+
+*all features below are numeric, -1 to 1*\
+tBodyAcc-mean()-X\
+tBodyAcc-mean()-Y\
+tBodyAcc-mean()-Z\
+tBodyAcc-std()-X\
+tBodyAcc-std()-Y\
+tBodyAcc-std()-Z\
+tGravityAcc-mean()-X\
+tGravityAcc-mean()-Y\
+tGravityAcc-mean()-Z\
+tGravityAcc-std()-X\
+tGravityAcc-std()-Y\
+tGravityAcc-std()-Z\
+tBodyAccJerk-mean()-X\
+tBodyAccJerk-mean()-Y\
+tBodyAccJerk-mean()-Z\
+tBodyAccJerk-std()-X\
+tBodyAccJerk-std()-Y\
+tBodyAccJerk-std()-Z\
+tBodyGyro-mean()-X\
+tBodyGyro-mean()-Y\
+tBodyGyro-mean()-Z\
+tBodyGyro-std()-X\
+tBodyGyro-std()-Y\
+tBodyGyro-std()-Z\
+tBodyGyroJerk-mean()-X\
+tBodyGyroJerk-mean()-Y\
+tBodyGyroJerk-mean()-Z\
+tBodyGyroJerk-std()-X\
+tBodyGyroJerk-std()-Y\
+tBodyGyroJerk-std()-Z\
+tBodyAccMag-mean()\
+tBodyAccMag-std()\
+tGravityAccMag-mean()\
+tGravityAccMag-std()\
+tBodyAccJerkMag-mean()\
+tBodyAccJerkMag-std()\
+tBodyGyroMag-mean()\
+tBodyGyroMag-std()\
+tBodyGyroJerkMag-mean()\
+tBodyGyroJerkMag-std()\
+fBodyAcc-mean()-X\
+fBodyAcc-mean()-Y\
+fBodyAcc-mean()-Z\
+fBodyAcc-std()-X\
+fBodyAcc-std()-Y\
+fBodyAcc-std()-Z\
+fBodyAcc-meanFreq()-X\
+fBodyAcc-meanFreq()-Y\
+fBodyAcc-meanFreq()-Z\
+fBodyAccJerk-mean()-X\
+fBodyAccJerk-mean()-Y\
+fBodyAccJerk-mean()-Z\
+fBodyAccJerk-std()-X\
+fBodyAccJerk-std()-Y\
+fBodyAccJerk-std()-Z\
+fBodyAccJerk-meanFreq()-X\
+fBodyAccJerk-meanFreq()-Y\
+fBodyAccJerk-meanFreq()-Z\
+fBodyGyro-mean()-X\
+fBodyGyro-mean()-Y\
+fBodyGyro-mean()-Z\
+fBodyGyro-std()-X\
+fBodyGyro-std()-Y\
+fBodyGyro-std()-Z\
+fBodyGyro-meanFreq()-X\
+fBodyGyro-meanFreq()-Y\
+fBodyGyro-meanFreq()-Z\
+fBodyAccMag-mean()\
+fBodyAccMag-std()\
+fBodyAccMag-meanFreq()\
+fBodyBodyAccJerkMag-mean()\
+fBodyBodyAccJerkMag-std()\
+fBodyBodyAccJerkMag-meanFreq()\
+fBodyBodyGyroMag-mean()\
+fBodyBodyGyroMag-std()\
+fBodyBodyGyroMag-meanFreq()\
+fBodyBodyGyroJerkMag-mean()\
+fBodyBodyGyroJerkMag-std()\
+fBodyBodyGyroJerkMag-meanFreq()
+
+The resulting table is stored in space delimited format for convenience
+and can be loaded for further analysis using:
+
+`read.table('./analysis.txt', header = TRUE)`
+
+## Citations
+
+**1** Human Activity Recognition Using Smartphones Dataset Davide
+Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L.
+Reyes-Ortiz. Human Activity Recognition on Smartphones using a
+Multiclass Hardware-Friendly Support Vector Machine. International
+Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz,
+Spain. Dec 2012
+<http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones>
