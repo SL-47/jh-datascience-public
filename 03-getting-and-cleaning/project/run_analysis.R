@@ -44,7 +44,7 @@ feature_labels_df <- read.table("./features.txt"
                                 , stringsAsFactors = FALSE)
 
 
-get_data <- function(x_file, y_file, subject_file){
+get_data <- function(x_file, y_file, subject_file) {
     ## Process data set of same structure
     ## returns a data set with the required features
 
@@ -53,7 +53,7 @@ get_data <- function(x_file, y_file, subject_file){
                             , sep = ""
                             , header = FALSE
                             , na.strings = ""
-                            , col.names = feature_labels_df[,2]
+                            , col.names = feature_labels_df[, 2]
                             , check.names = FALSE
                             , stringsAsFactors = FALSE)
 
@@ -74,7 +74,7 @@ get_data <- function(x_file, y_file, subject_file){
 
     test_xy_df <- cbind(test_subjects_df
                         , test_y_df
-                        , test_x_df[,grep("mean|std"
+                        , test_x_df[, grep("mean|std"
                                           , names(test_x_df))]
                         )
 
@@ -83,18 +83,19 @@ get_data <- function(x_file, y_file, subject_file){
     test_xy_merged_df <- merge(test_xy_df, activity_labels_df
                                , by.x = "Y", by.y = "id"
                                , all = FALSE)
+
     test_xy_merged_df <- select(test_xy_merged_df, -Y)
 
 }
 
 #process test data
-test_df <- get_data("./test/X_test.txt"
-                    , "./test/y_test.txt"
-                    , "./test/subject_test.txt")
+test_df <- get_data("./X_test.txt"
+                    , "./y_test.txt"
+                    , "./subject_test.txt")
 # process training data
-train_df <- get_data("./train/X_train.txt"
-                     , "./train/y_train.txt"
-                     , "./train/subject_train.txt")
+train_df <- get_data("./X_train.txt"
+                     , "./y_train.txt"
+                     , "./subject_train.txt")
 
 # combine test and train data
 test_train_df <- rbind(test_df, train_df)
@@ -107,7 +108,6 @@ rm(list = c("test_df", "train_df", "activity_labels_df", "feature_labels_df"))
 final_df <- test_train_df %>%
             group_by(subject, activity) %>%
             summarize_if(is.numeric, mean, na.rm = TRUE) %>%
-            write.table("./analysis.txt"
+            write.table("./analysis1.txt"
                       , row.names = FALSE
                       )
-

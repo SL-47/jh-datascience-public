@@ -1,4 +1,4 @@
-# Getting & cleaning data : course project
+ # Getting & cleaning data : course project
 version 1.0
 
 This project uses the data from this study : Human Activity Recognition Using Smartphones Dataset (1) 
@@ -17,17 +17,9 @@ For each record in the dataset it is provided:
 The structure for the data 
 
 -+- test
- |   |- subject_test.txt    Each row identifies the subject who 
- |   |                      performed the activity
- |   |- X_test.txt          Test set
- |   |- y_test.txt          test labels
  |   +  Inertial Signals  (not used)
  |
 -+- train
- |   |- subject_train.txt    Each row identifies the subject who 
- |   |                      performed the activity
- |   |- X_train.txt         Training set
- |   |- y_train.txt         Training labels
  |   +  Inertial Signals  (not used)
  |
  +- activity_labels.txt     Links the class labels with their 
@@ -37,6 +29,14 @@ The structure for the data
  +- features.txt            List of all features.
  |
  |- analysis.csv            results of the analysis
+ |- subject_test.txt        Each row identifies the subject who 
+ |                          performed the activity
+ |- X_test.txt              Test set
+ |- y_test.txt              test labels
+ |- subject_train.txt       Each row identifies the subject who 
+ |                          performed the activity
+ |- X_train.txt             Training set
+ |- y_train.txt             Training labels
  |
  +- tidy
      |- README.rmd
@@ -44,7 +44,7 @@ The structure for the data
      |- run_analysis.R      R script to process the data
 
 ### Use
-Once the data is in the structure above set the working directory to the root of the directory structure show. Execute the `run_analysis.R` script. The tidy data set will be place in a file `analysis.csv`.
+Once the data is in the structure above set the working directory to the root of the directory structure show. Execute the `run_analysis.R` script. The tidy data set will be place in a file `analysis.txt`.
 
 
 Notes: 
